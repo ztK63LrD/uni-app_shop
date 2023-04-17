@@ -1,4 +1,5 @@
 import App from './App'
+import store from '@/store/store.js'
 
 // #ifndef VUE3
 import Vue from 'vue'
@@ -33,8 +34,18 @@ try {
   });
 } catch (error) { }
 
+// 封装自定义展示消息的弹框方法
+uni.$showMsg = (title='数据加载失败！',duration = 1500) => {
+	uni.showToast({
+		title,
+		duration,
+		icon:'none'
+	})
+}
+
 const app = new Vue({
-  ...App
+  ...App,
+  store
 })
 app.$mount()
 // #endif
